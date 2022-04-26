@@ -23,7 +23,7 @@ router.get("/", async function (req, res) {
 });*/
 
 // Handle GET requests to /api route
-router.get("/api", async function(req, res)  {
+app.get("/api", async function(req, res)  {
   res.json({ message: "Hello from server!" });
 });
 
