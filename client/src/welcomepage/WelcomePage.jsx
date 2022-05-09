@@ -36,7 +36,11 @@ function LandingFrameMessage() {
       <div className="Landing-Title">Speech to Text</div>
 
       <div className="Landing-description">
-        Using FireBase to login and record user voice.
+        Using FireBase to login and store the data.
+        <br></br>
+        Using Web Speech API to record user voice and than turn it into text.
+        <br></br>
+        Using React JS as a front-end tool and Express as Back-end.
       </div>
       <br />
       <LoginButton />
