@@ -1,0 +1,19 @@
+.Landing-Frame{
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%
+}
+.Landing-Frame-Message{
+    margin: auto;
+    padding: 10% 35% 10% 15%;
+    color: white
+}
+
+.Landing-Title{
+    font-size: 50px;
+}
+.Landing-desciption{
+    font-size: 20px;
+}

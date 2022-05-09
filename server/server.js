@@ -4,16 +4,24 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const router = express.Router({ mergeParams: true });
-const path = require('path');
+const path = require("path");
+const { ppid } = require("process");
 
 const app = express();
 
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*'
+}));
+
+// Have Node serve the files for our built React app
+//https://stackoverflow.com/questions/34105183/uncaught-syntaxerror-unexpected-token-in-node-js
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+// app.use(express.static('public'))
+// app.use(express.static('build'))
 
 
-// All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
 
 /*
 router.get("/", async function (req, res) {
@@ -23,12 +31,25 @@ router.get("/", async function (req, res) {
 });*/
 
 // Handle GET requests to /api route
-app.get("/api", async function(req, res)  {
-  res.json({ message: "Hello from server!" });
+app.get("/api", async function (req, res) {
+  // console.log("Hello from Express")
+   res.json({ message: "Hello from server!" });
+ });
+
+// All other GET requests not handled before will return our React app
+app.get("*", (req, res) => {
+  // let url = path.join(__dirname, "../client/build", "index.html");
+  // if (!url.startsWith("/app/"))
+  //   // we're on local windows
+  //   url = url.substring(1);
+  // res.render(url);
+  //res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  //res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  console.log("Hello from Express")
+  res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
 });
 
-// Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+
 
 //add the router
 app.use(bodyParser.urlencoded({ extended: true }));
